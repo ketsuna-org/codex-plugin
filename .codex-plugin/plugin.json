@@ -1,6 +1,6 @@
 {
   "name": "codex-plugin",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Documentation officielle Bot Creator et exemples de commandes et workflows Blocks, BDFD et JavaScript.",
   "repository": "https://github.com/ketsuna-org/codex-plugin",
   "homepage": "https://bot-creator.fr",
@@ -20,8 +20,9 @@
     ],
     "logo": "./assets/icon.png",
     "composerIcon": "./assets/icon.png",
-    "supportURL": "https://bot-creator.fr/legal-notice",
-    "privacyPolicyURL": "https://bot-creator.fr/privacy-policy"
+    "supportURL": "https://bot-creator.fr/plugin-support",
+    "privacyPolicyURL": "https://bot-creator.fr/privacy-policy#documentation-plugin",
+    "termsOfServiceURL": "https://bot-creator.fr/plugin-terms"
   },
   "author": {
     "name": "Bot Creator",
@@ -80,10 +81,11 @@
           ]
         },
         "commerce": false,
-        "commerce_description": "This documentation plugin does not sell products, process payments or manage subscriptions."
+        "commerce_description": "This documentation plugin does not sell products, process payments or manage subscriptions.",
+        "demo_recording_url": "https://bot-creator.fr/assets/review/bot-creator-plugin-demo.mp4"
       },
       "publication": {
-        "release_notes": "Add public support and privacy links, clarify the technical documentation purpose, and include review test cases."
+        "release_notes": "Add dedicated support and terms of use, plugin privacy information, and a live public MCP walkthrough."
       }
     }
   }

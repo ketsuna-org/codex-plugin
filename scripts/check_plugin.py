@@ -21,7 +21,7 @@ def load(path):
 def check_package():
     manifest = load('.codex-plugin/plugin.json')
     require(manifest['name'] == 'codex-plugin', 'Unexpected plugin identity')
-    require(manifest['version'] == '0.1.4', 'Unexpected version')
+    require(manifest['version'] == '0.1.5', 'Unexpected version')
     require(manifest['interface']['displayName'] == 'Bot Creator', 'Missing display name')
     require(bool(manifest.get('author', {}).get('name')), 'Missing author.name')
     interface = manifest['interface']
@@ -52,7 +52,7 @@ def check_package():
     require(len(cases['positive']) == 5 and len(cases['negative']) == 3, 'Expected five positive and three negative review cases')
     for case in cases['positive']:
         require(all(case.get(k) for k in ('description', 'prompt', 'tools_triggered', 'expected_behavior')), 'Incomplete positive review case')
-    for field in ('supportURL', 'privacyPolicyURL'):
+    for field in ('websiteURL', 'supportURL', 'privacyPolicyURL', 'termsOfServiceURL'):
         require(interface.get(field, '').startswith('https://'), f'Missing public URL: {field}')
     remote = load('mcp.json')
     require(remote['$schema'] == 'https://agent-plugins.org/schemas/1.0.0/mcp.schema.json', 'Invalid portable MCP schema')

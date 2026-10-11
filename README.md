@@ -1,6 +1,6 @@
 # Bot Creator — plugin ChatGPT et Codex
 
-Version **0.1.4**, identifiant technique `codex-plugin`.
+Version **0.1.5**, identifiant technique `codex-plugin`.
 
 Ce plugin aide les utilisateurs de [Bot Creator](https://bot-creator.fr) à consulter les guides et références officiels et à préparer des exemples de commandes ou workflows **Blocks, BDFD et JavaScript**. Il répond dans la langue demandée et cite les documents consultés.
 
@@ -49,7 +49,7 @@ Pour préparer une archive contenant uniquement les composants du plugin :
 python3 scripts/package_plugin.py
 ```
 
-Le résultat est `dist/codex-plugin-0.1.4.zip`. Le ZIP contient un unique dossier `codex-plugin/`, ses manifestes, sa configuration MCP et ses skills. Il ne contient ni Git, ni le catalogue local, ni les scripts de développement.
+Le résultat est `dist/codex-plugin-0.1.5.zip`. Le ZIP contient un unique dossier `codex-plugin/`, ses manifestes, sa configuration MCP et ses skills. Il ne contient ni Git, ni le catalogue local, ni les scripts de développement.
 
 Pour tester le service dans ChatGPT, si votre compte propose cette fonctionnalité, ouvrir **Plugins**, choisir **Add custom MCP server**, saisir `https://bot-creator.fr/api/mcp` sans authentification, puis choisir **Create as a plugin**. Cette connexion teste les outils du serveur ; elle n'installe pas automatiquement le skill livré dans ce dépôt. Vérifier ensuite le paquet complet par le parcours d'import proposé à votre compte.
 
@@ -93,10 +93,12 @@ Le format suit la [documentation officielle OpenAI sur les plugins](https://deve
 
 Les manifestes incluent l’auteur, les métadonnées de présentation et l’icône officielle du site Bot Creator. Les contrôles locaux vérifient ces champs et les dimensions du PNG, sans garantir l’acceptation par le service d’import ChatGPT.
 
-## Éléments de revue encore nécessaires
+## Ressources de revue
 
-La catégorie proposée est **Developer Tools** : le plugin consulte des références techniques et prépare des exemples pour construire des bots Discord. Confirmer cette catégorie dans le portail après import ; le manifeste ne garantit pas sa validation automatique.
+La catégorie proposée est **Developer Tools** : confirmer cette sélection dans le portail après import.
 
-Le paquet contient cinq cas positifs et trois cas négatifs, ainsi que les liens publics de contact et de confidentialité vérifiés. Ces cas décrivent les résultats attendus et ne constituent pas une attestation de test dans ChatGPT.
+Le paquet contient cinq cas positifs et trois cas négatifs, ainsi que les pages publiques de [support](https://bot-creator.fr/plugin-support), de [confidentialité](https://bot-creator.fr/privacy-policy#documentation-plugin) et de [conditions d’utilisation](https://bot-creator.fr/plugin-terms).
 
-Avant soumission, fournir une URL publique de **conditions d’utilisation** adaptée au plugin (`interface.termsOfServiceURL`) et une **vidéo de démonstration** accessible aux reviewers (`extensions.com.openai.review.demo_recording_url`). Ces champs restent absents tant que les ressources ne sont pas disponibles. Les conditions de vente des abonnements ne sont pas substituées aux conditions d’utilisation du plugin.
+La [vidéo de démonstration](https://bot-creator.fr/assets/review/bot-creator-plugin-demo.mp4) présente des appels réels au MCP documentaire : initialisation, outils, recherche BDFD, modèle d’exécution, planification et validation Blocks. Elle est générée à partir des réponses capturées ; ce n’est pas un enregistrement de l’interface ChatGPT. Les cas de revue décrivent les résultats attendus, sans constituer une attestation de tests du modèle dans ChatGPT.
+
+Pour régénérer la vidéo, installer Pillow et imageio-ffmpeg dans un environnement Python séparé, puis exécuter `python scripts/record_demo.py /chemin/vers/demo.mp4`. Ne pas envoyer de données privées dans les requêtes de démonstration.
