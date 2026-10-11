@@ -36,8 +36,7 @@ def check_package():
     remote = load('mcp.json')
     require(remote['$schema'] == 'https://agent-plugins.org/schemas/1.0.0/mcp.schema.json', 'Invalid portable MCP schema')
     require(remote['mcpServers'] == {'bot-creator-docs': {
-        'type': 'streamable-http', 'url': 'https://bot-creator.fr/api/mcp',
-        'extensions': {'com.openai': {'auth': {'type': 'none'}}}
+        'type': 'streamable-http', 'url': 'https://bot-creator.fr/api/mcp'
     }}, 'Unexpected portable transport or authentication')
     skills = list((ROOT / manifest['skills']).glob('*/SKILL.md'))
     require(len(skills) == 1, 'Expected one discoverable skill')

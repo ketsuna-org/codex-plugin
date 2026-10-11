@@ -3,14 +3,7 @@
   "mcpServers": {
     "bot-creator-docs": {
       "type": "streamable-http",
-      "url": "https://bot-creator.fr/api/mcp",
-      "extensions": {
-        "com.openai": {
-          "auth": {
-            "type": "none"
-          }
-        }
-      }
+      "url": "https://bot-creator.fr/api/mcp"
     }
   }
 }
