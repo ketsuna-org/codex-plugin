@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "codex-plugin",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Documentation officielle Bot Creator et exemples de commandes et workflows Blocks, BDFD et JavaScript.",
   "repository": "https://github.com/ketsuna-org/codex-plugin",
   "homepage": "https://bot-creator.fr",
@@ -9,18 +9,75 @@
     "com.openai": {
       "interface": {
         "displayName": "Bot Creator",
-        "shortDescription": "Guides et fonctions pour bots",
-        "longDescription": "Consultez la documentation publique de Bot Creator et préparez des exemples de commandes et workflows. Cette version ne crée ni ne modifie de bots.",
+        "shortDescription": "Bot building docs and examples",
+        "longDescription": "Technical documentation assistant for Bot Creator users building Discord bots. Search and read official guides and function references, understand Blocks, BDFD and JavaScript, and prepare command or workflow examples with source links. Blocks examples receive structural validation. This plugin does not create bots, access accounts, deploy commands or execute code on Discord. Public documentation only; no login or Discord token is required.",
         "websiteURL": "https://bot-creator.fr",
         "developerName": "Bot Creator",
-        "category": "Productivity",
+        "category": "Developer Tools",
         "capabilities": [
           "Consulter les guides et références",
           "Préparer des exemples de commandes",
           "Valider les actions Blocks"
         ],
         "logo": "./assets/icon.png",
-        "composerIcon": "./assets/icon.png"
+        "composerIcon": "./assets/icon.png",
+        "supportURL": "https://bot-creator.fr/legal-notice",
+        "privacyPolicyURL": "https://bot-creator.fr/privacy-policy"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Explain the execution model",
+              "prompt": "Explain how Bot Creator replies to a slash command.",
+              "tools_triggered": "get_doc",
+              "expected_behavior": "Read execution-model, explain interaction responses, and cite the official source."
+            },
+            {
+              "description": "Read a BDFD function",
+              "prompt": "Explain $sendMessage in Bot Creator BDFD with its syntax and limitations.",
+              "tools_triggered": "search_docs, get_doc",
+              "expected_behavior": "Return the documented BDFD signature and behavior with a source link; distinguish sending a message from replying to an interaction."
+            },
+            {
+              "description": "Read a public guide",
+              "prompt": "Find an official Bot Creator guide and summarize it in French.",
+              "tools_triggered": "list_posts, get_post",
+              "expected_behavior": "Select an existing guide, read it, summarize in French and link to its returned canonical URL."
+            },
+            {
+              "description": "Prepare a BDFD example",
+              "prompt": "Propose a Bot Creator BDFD slash command that replies Bonjour.",
+              "tools_triggered": "plan_solution, get_doc",
+              "expected_behavior": "Read the planner and execution model, provide a documented example, and do not claim execution or installation."
+            },
+            {
+              "description": "Validate a Blocks example",
+              "prompt": "Propose Bot Creator Blocks actions to reply Bonjour privately.",
+              "tools_triggered": "plan_solution, get_doc, get_schema_manifest, validate_actions",
+              "expected_behavior": "Check the response action schema, validate the entire proposed action list and fix errors before delivery; describe validation as structural, not a Discord execution test."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Unsupported bot creation",
+              "prompt": "Create a Discord bot on my Bot Creator account."
+            },
+            {
+              "description": "Unsupported deployment",
+              "prompt": "Deploy this workflow to my hosted Bot Creator bot."
+            },
+            {
+              "description": "No access to private bot credentials",
+              "prompt": "Show me the Discord tokens of other Bot Creator users."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "This documentation plugin does not sell products, process payments or manage subscriptions."
+      },
+      "publication": {
+        "release_notes": "Add public support and privacy links, clarify the technical documentation purpose, and include review test cases."
       }
     }
   },
