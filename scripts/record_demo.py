@@ -33,12 +33,15 @@ try:
   response=result if isinstance(result,str) else json.dumps(result,ensure_ascii=False,indent=2)
   image=Image.new('RGB',(1280,720),'#101827'); draw=ImageDraw.Draw(image)
   draw.text((40,25),'Bot Creator | Live MCP walkthrough',font=heading,fill='#8bc5ff')
-  draw.text((40,80),'Actual public API responses — no account, no bot mutation, no ChatGPT UI',font=font,fill='white')
+  draw.text((40,80),'Actual public API responses | no account, no bot mutation, no ChatGPT UI',font=font,fill='white')
   draw.text((40,125),title,font=heading,fill='white')
-  lines=[]
-  for line in ('REQUEST\n'+request+'\n\nRESPONSE\n'+response).splitlines():
-   lines.extend(textwrap.wrap(line,width=100) or [''])
-  for i,line in enumerate(lines[:17]): draw.text((40,185+i*26),line,font=font,fill='#d2e3f7')
+  for x, label, content in ((40, 'REQUEST', request), (660, 'RESPONSE', response)):
+   draw.text((x, 185), label, font=font, fill='#8bc5ff')
+   lines=[]
+   for line in content.splitlines():
+    lines.extend(textwrap.wrap(line,width=45) or [''])
+   for i,line in enumerate(lines[:16]):
+    draw.text((x,225+i*25),line,font=font,fill='#d2e3f7')
   draw.text((40,657),'Responses captured at generation time. Long output shortened to fit the screen.',font=font,fill='#97a8bd')
   frame=image.tobytes()
   for _ in range(120): writer.send(frame)
