@@ -1,6 +1,6 @@
 {
   "name": "codex-plugin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Documentation officielle Bot Creator et exemples de commandes et workflows Blocks, BDFD et JavaScript.",
   "repository": "https://github.com/ketsuna-org/codex-plugin",
   "homepage": "https://bot-creator.fr",

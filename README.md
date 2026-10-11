@@ -1,6 +1,6 @@
-# Bot Creator — plugin Codex
+# Bot Creator — plugin ChatGPT et Codex
 
-Version **0.1.0**, identifiant technique `codex-plugin`.
+Version **0.1.1**, identifiant technique `codex-plugin`.
 
 Ce plugin aide les utilisateurs de [Bot Creator](https://bot-creator.fr) à consulter les guides et références officiels et à préparer des exemples de commandes ou workflows **Blocks, BDFD et JavaScript**. Il répond dans la langue demandée et cite les documents consultés.
 
@@ -17,7 +17,7 @@ Cette V1 ne crée ni ne modifie de bots, commandes ou workflows. Elle n'accède 
 
 En cas d'indisponibilité du service, le skill indique que la documentation n'a pas pu être consultée et propose le site officiel. Il ne prétend pas avoir validé un exemple ou effectué une modification. Certains guides sont uniquement en anglais : ils peuvent être expliqués en français.
 
-## Installation pour le développement
+## Installation pour le développement dans Codex
 
 Le catalogue `.agents/plugins/marketplace.json` est une source locale de test, nommée `bot-creator-local`. Son chemin `./` désigne la racine de ce dépôt, où se trouve le plugin ; il n'est pas relatif au dossier `.agents/plugins`.
 
@@ -38,6 +38,24 @@ Le skill `bot-creator-docs` peut être choisi automatiquement pour une demande c
 Après une modification, actualiser la source et le plugin avec les commandes de marketplace proposées par la version installée de Codex, puis redémarrer l'application et recommencer dans une nouvelle conversation.
 
 La création de ce dépôt n'installe pas le plugin dans votre configuration personnelle. Le catalogue sert au développement et à la distribution privée ; ce dépôt n'est pas une publication dans le répertoire public OpenAI.
+
+## ChatGPT et paquet portable
+
+Le manifeste racine `plugin.json` et la configuration `mcp.json` constituent le paquet portable Agent Plugins. Le même skill et le même service public sont utilisés par ChatGPT et Codex. Les fichiers `.codex-plugin/plugin.json` et `.mcp.json` restent disponibles pour la compatibilité Codex.
+
+Pour préparer une archive contenant uniquement les composants du plugin :
+
+```bash
+python3 scripts/package_plugin.py
+```
+
+Le résultat est `dist/codex-plugin-0.1.1.zip`. Le ZIP contient un unique dossier `codex-plugin/`, ses manifestes, sa configuration MCP et ses skills. Il ne contient ni Git, ni le catalogue local, ni les scripts de développement.
+
+Pour tester le service dans ChatGPT, si votre compte propose cette fonctionnalité, ouvrir **Plugins**, choisir **Add custom MCP server**, saisir `https://bot-creator.fr/api/mcp` sans authentification, puis choisir **Create as a plugin**. Cette connexion teste les outils du serveur ; elle n'installe pas automatiquement le skill livré dans ce dépôt. Vérifier ensuite le paquet complet par le parcours d'import proposé à votre compte.
+
+Pour distribuer le plugin complet dans le répertoire partagé ChatGPT/Codex, importer le ZIP dans le [portail de soumission OpenAI](https://developers.openai.com/plugins/deploy/submission), sous l'organisation et le projet souhaités. Compléter les éléments demandés par le portail, notamment l'icône de présentation et les informations de revue ; résoudre les résultats des contrôles automatiques, tester le plugin dans ChatGPT, puis le soumettre à revue. Après approbation, choisir sa publication.
+
+Le paquet est préparé pour ce parcours ; aucune importation, installation ChatGPT, approbation ou publication n'a été effectuée par les scripts de ce dépôt. Les fonctionnalités de test accessibles dépendent du compte et de la surface utilisée. Rejouer les scénarios ci-dessous dans ChatGPT après installation du paquet complet.
 
 ## Vérifications reproductibles
 
@@ -64,6 +82,7 @@ Le test dans une conversation après installation reste nécessaire pour vérifi
 
 ## Structure
 
+- `plugin.json` et `mcp.json` : paquet portable ChatGPT/Codex et authentification publique.
 - `.codex-plugin/plugin.json` : manifeste Codex compatible, version et interface du plugin.
 - `.mcp.json` : connexion publique au service documentaire.
 - `skills/bot-creator-docs/SKILL.md` : recherche, citations, modes et limites.

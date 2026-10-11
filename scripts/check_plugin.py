@@ -21,13 +21,24 @@ def load(path):
 def check_package():
     manifest = load('.codex-plugin/plugin.json')
     require(manifest['name'] == 'codex-plugin', 'Unexpected plugin identity')
-    require(manifest['version'] == '0.1.0', 'Unexpected version')
+    require(manifest['version'] == '0.1.1', 'Unexpected version')
     require(manifest['interface']['displayName'] == 'Bot Creator', 'Missing display name')
     for key in ('skills', 'mcpServers'):
         relative = manifest[key]
         require(relative.startswith('./'), f'{key} must be root-relative')
         path = (ROOT / relative).resolve()
         require(path.is_relative_to(ROOT) and path.exists(), f'Invalid {key} path')
+    portable = load('plugin.json')
+    require(portable['$schema'] == 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json', 'Invalid portable schema')
+    for key in ('name', 'version', 'description', 'repository', 'homepage'):
+        require(portable[key] == manifest[key], f'Portable/Codex mismatch: {key}')
+    require(portable['extensions']['com.openai']['interface'] == manifest['interface'], 'Interface mismatch')
+    remote = load('mcp.json')
+    require(remote['$schema'] == 'https://agent-plugins.org/schemas/1.0.0/mcp.schema.json', 'Invalid portable MCP schema')
+    require(remote['mcpServers'] == {'bot-creator-docs': {
+        'type': 'streamable-http', 'url': 'https://bot-creator.fr/api/mcp',
+        'extensions': {'com.openai': {'auth': {'type': 'none'}}}
+    }}, 'Unexpected portable transport or authentication')
     skills = list((ROOT / manifest['skills']).glob('*/SKILL.md'))
     require(len(skills) == 1, 'Expected one discoverable skill')
     skill = skills[0].read_text()

@@ -5,7 +5,7 @@ description: Consulter la documentation officielle Bot Creator pour expliquer le
 
 # Documentation Bot Creator
 
-Utiliser le serveur MCP documentaire `bot-creator-docs` du plugin. Il consulte les documents publics et valide des structures ; il n'accède à aucun compte ni bot. Répondre dans la langue de l'utilisateur, en conservant les identifiants et la syntaxe des fonctions.
+Dans ChatGPT ou Codex, utiliser le serveur MCP documentaire `bot-creator-docs` du plugin. Il consulte les documents publics et valide des structures ; il n'accède à aucun compte ni bot. Répondre dans la langue de l'utilisateur, en conservant les identifiants et la syntaxe des fonctions.
 
 ## Lire les références et guides
 
