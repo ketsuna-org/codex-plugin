@@ -1,6 +1,6 @@
 # Bot Creator — plugin ChatGPT et Codex
 
-Version **0.1.2**, identifiant technique `codex-plugin`.
+Version **0.1.3**, identifiant technique `codex-plugin`.
 
 Ce plugin aide les utilisateurs de [Bot Creator](https://bot-creator.fr) à consulter les guides et références officiels et à préparer des exemples de commandes ou workflows **Blocks, BDFD et JavaScript**. Il répond dans la langue demandée et cite les documents consultés.
 
@@ -49,11 +49,11 @@ Pour préparer une archive contenant uniquement les composants du plugin :
 python3 scripts/package_plugin.py
 ```
 
-Le résultat est `dist/codex-plugin-0.1.2.zip`. Le ZIP contient un unique dossier `codex-plugin/`, ses manifestes, sa configuration MCP et ses skills. Il ne contient ni Git, ni le catalogue local, ni les scripts de développement.
+Le résultat est `dist/codex-plugin-0.1.3.zip`. Le ZIP contient un unique dossier `codex-plugin/`, ses manifestes, sa configuration MCP et ses skills. Il ne contient ni Git, ni le catalogue local, ni les scripts de développement.
 
 Pour tester le service dans ChatGPT, si votre compte propose cette fonctionnalité, ouvrir **Plugins**, choisir **Add custom MCP server**, saisir `https://bot-creator.fr/api/mcp` sans authentification, puis choisir **Create as a plugin**. Cette connexion teste les outils du serveur ; elle n'installe pas automatiquement le skill livré dans ce dépôt. Vérifier ensuite le paquet complet par le parcours d'import proposé à votre compte.
 
-Pour distribuer le plugin complet dans le répertoire partagé ChatGPT/Codex, importer le ZIP dans le [portail de soumission OpenAI](https://developers.openai.com/plugins/deploy/submission), sous l'organisation et le projet souhaités. Compléter les éléments demandés par le portail, notamment l'icône de présentation et les informations de revue ; résoudre les résultats des contrôles automatiques, tester le plugin dans ChatGPT, puis le soumettre à revue. Après approbation, choisir sa publication.
+Pour distribuer le plugin complet dans le répertoire partagé ChatGPT/Codex, importer le ZIP dans le [portail de soumission OpenAI](https://developers.openai.com/plugins/deploy/submission), sous l'organisation et le projet souhaités. Compléter les éléments demandés par le portail, notamment les informations de revue ; résoudre les résultats des contrôles automatiques, tester le plugin dans ChatGPT, puis le soumettre à revue. Après approbation, choisir sa publication.
 
 Le paquet est préparé pour ce parcours ; aucune importation, installation ChatGPT, approbation ou publication n'a été effectuée par les scripts de ce dépôt. Les fonctionnalités de test accessibles dépendent du compte et de la surface utilisée. Rejouer les scénarios ci-dessous dans ChatGPT après installation du paquet complet.
 
@@ -90,3 +90,5 @@ Le test dans une conversation après installation reste nécessaire pour vérifi
 - `scripts/check_plugin.py` : contrôles du paquet et du service.
 
 Le format suit la [documentation officielle OpenAI sur les plugins](https://developers.openai.com/plugins/build/plugins).
+
+Les manifestes incluent l’auteur, les métadonnées de présentation et l’icône officielle du site Bot Creator. Les contrôles locaux vérifient ces champs et les dimensions du PNG, sans garantir l’acceptation par le service d’import ChatGPT.

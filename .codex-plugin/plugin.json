@@ -1,6 +1,6 @@
 {
   "name": "codex-plugin",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Documentation officielle Bot Creator et exemples de commandes et workflows Blocks, BDFD et JavaScript.",
   "repository": "https://github.com/ketsuna-org/codex-plugin",
   "homepage": "https://bot-creator.fr",
@@ -8,8 +8,22 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Bot Creator",
-    "shortDescription": "Guides et références pour vos bots Discord",
+    "shortDescription": "Guides et fonctions pour bots",
     "longDescription": "Consultez la documentation publique de Bot Creator et préparez des exemples de commandes et workflows. Cette version ne crée ni ne modifie de bots.",
-    "websiteURL": "https://bot-creator.fr"
+    "websiteURL": "https://bot-creator.fr",
+    "developerName": "Bot Creator",
+    "category": "Productivity",
+    "capabilities": [
+      "Consulter les guides et références",
+      "Préparer des exemples de commandes",
+      "Valider les actions Blocks"
+    ],
+    "logo": "./assets/icon.png",
+    "composerIcon": "./assets/icon.png"
+  },
+  "author": {
+    "name": "Bot Creator",
+    "email": "contact@bot-creator.fr",
+    "url": "https://bot-creator.fr"
   }
 }

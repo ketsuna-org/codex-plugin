@@ -14,6 +14,7 @@ if __name__ == '__main__':
         'plugin.json', 'mcp.json', '.codex-plugin/plugin.json', '.mcp.json'
     )]
     files += sorted(path for path in (ROOT / 'skills').rglob('*') if path.is_file())
+    files += sorted(path for path in (ROOT / 'assets').rglob('*') if path.is_file())
     output = ROOT / 'dist' / f'{manifest["name"]}-{manifest["version"]}.zip'
     output.parent.mkdir(exist_ok=True)
     with ZipFile(output, 'w', ZIP_DEFLATED) as archive:

@@ -21,8 +21,21 @@ def load(path):
 def check_package():
     manifest = load('.codex-plugin/plugin.json')
     require(manifest['name'] == 'codex-plugin', 'Unexpected plugin identity')
-    require(manifest['version'] == '0.1.2', 'Unexpected version')
+    require(manifest['version'] == '0.1.3', 'Unexpected version')
     require(manifest['interface']['displayName'] == 'Bot Creator', 'Missing display name')
+    require(bool(manifest.get('author', {}).get('name')), 'Missing author.name')
+    interface = manifest['interface']
+    for key in ('developerName', 'category', 'capabilities', 'logo', 'composerIcon'):
+        require(bool(interface.get(key)), f'Missing listing field: {key}')
+    require(0 < len(interface['shortDescription']) <= 30, 'Listing subtitle exceeds 30 characters')
+    for key in ('logo', 'composerIcon'):
+        path = (ROOT / interface[key]).resolve()
+        require(interface[key].startswith('./') and path.is_relative_to(ROOT) and path.is_file(), f'Invalid image path: {key}')
+        image = path.read_bytes()
+        require(image.startswith(b'\x89PNG\r\n\x1a\n'), 'Expected PNG branding asset')
+        import struct
+        width, height = struct.unpack('>II', image[16:24])
+        require(width == height and 48 <= width <= 4096 and len(image) <= 5 * 1024 * 1024, 'Invalid icon size')
     for key in ('skills', 'mcpServers'):
         relative = manifest[key]
         require(relative.startswith('./'), f'{key} must be root-relative')
@@ -30,7 +43,7 @@ def check_package():
         require(path.is_relative_to(ROOT) and path.exists(), f'Invalid {key} path')
     portable = load('plugin.json')
     require(portable['$schema'] == 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json', 'Invalid portable schema')
-    for key in ('name', 'version', 'description', 'repository', 'homepage'):
+    for key in ('name', 'version', 'description', 'repository', 'homepage', 'author'):
         require(portable[key] == manifest[key], f'Portable/Codex mismatch: {key}')
     require(portable['extensions']['com.openai']['interface'] == manifest['interface'], 'Interface mismatch')
     remote = load('mcp.json')
