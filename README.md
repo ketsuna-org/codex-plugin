@@ -1,6 +1,6 @@
 # Bot Creator — plugin ChatGPT et Codex
 
-Version **0.1.1**, identifiant technique `codex-plugin`.
+Version **0.1.2**, identifiant technique `codex-plugin`.
 
 Ce plugin aide les utilisateurs de [Bot Creator](https://bot-creator.fr) à consulter les guides et références officiels et à préparer des exemples de commandes ou workflows **Blocks, BDFD et JavaScript**. Il répond dans la langue demandée et cite les documents consultés.
 
@@ -49,7 +49,7 @@ Pour préparer une archive contenant uniquement les composants du plugin :
 python3 scripts/package_plugin.py
 ```
 
-Le résultat est `dist/codex-plugin-0.1.1.zip`. Le ZIP contient un unique dossier `codex-plugin/`, ses manifestes, sa configuration MCP et ses skills. Il ne contient ni Git, ni le catalogue local, ni les scripts de développement.
+Le résultat est `dist/codex-plugin-0.1.2.zip`. Le ZIP contient un unique dossier `codex-plugin/`, ses manifestes, sa configuration MCP et ses skills. Il ne contient ni Git, ni le catalogue local, ni les scripts de développement.
 
 Pour tester le service dans ChatGPT, si votre compte propose cette fonctionnalité, ouvrir **Plugins**, choisir **Add custom MCP server**, saisir `https://bot-creator.fr/api/mcp` sans authentification, puis choisir **Create as a plugin**. Cette connexion teste les outils du serveur ; elle n'installe pas automatiquement le skill livré dans ce dépôt. Vérifier ensuite le paquet complet par le parcours d'import proposé à votre compte.
 

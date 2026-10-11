@@ -21,7 +21,7 @@ def load(path):
 def check_package():
     manifest = load('.codex-plugin/plugin.json')
     require(manifest['name'] == 'codex-plugin', 'Unexpected plugin identity')
-    require(manifest['version'] == '0.1.1', 'Unexpected version')
+    require(manifest['version'] == '0.1.2', 'Unexpected version')
     require(manifest['interface']['displayName'] == 'Bot Creator', 'Missing display name')
     for key in ('skills', 'mcpServers'):
         relative = manifest[key]
